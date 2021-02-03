@@ -1,0 +1,32 @@
+---
+layout: post
+title:  " 01: Intro to the Eigenvalue Equation!"
+date:   2021-02-03 15:02:23 +0100
+categories: jekyll update
+header-includes: |
+    \usepackage{tikz,pgfplots}
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhead[CO,CE]{This is fancy}
+    \fancyfoot[CO,CE]{So is this}
+    \fancyfoot[LE,RO]{\thepage}
+---
+
+Assuming you know the basics about vector spaces and matrices, which are basically mappings from vector spaces,
+this will be a reminder to the eigenvalue equation and where it comes from.
+Later we will explore the connection to the principal component analysis.
+
+
+
+## Motivation
+
+
+Let us first consider the following eigenvalue equation, afterwards we will motivate it
+
+$ a^2 $
+
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
