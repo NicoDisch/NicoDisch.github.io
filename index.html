@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nico | Generative models and medical imaging</title>
-<meta name="description" content="Nico, ML researcher in Heidelberg. Flow matching, diffusion models, longitudinal 4D medical imaging, edge inference.">
+<meta name="description" content="Nico, ML researcher. Flow matching, diffusion models, longitudinal 4D medical imaging,  programming.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
@@ -108,7 +108,6 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
   <a class="home" href="#">Nico</a>
   <ul>
     <li><a href="#research">Research</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
     <li><a href="#reading">Reading</a></li>
   </ul>
@@ -116,9 +115,9 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
 
 <header class="hero">
   <div>
-    <h1>Nico<!-- add surname --></h1>
+    <h1>Nico Disch<!-- add surname --></h1>
     <p class="lede">I build generative models for medical images that change over time.</p>
-    <p class="sub">Flow matching, diffusion, and 4D image series. Lately also making vision models run fast on small hardware. PhD from DKFZ Heidelberg, physicist before that.</p>
+    <p class="sub">Flow matching, diffusion, and 4D image series. Lately also making vision models run fast on small hardware. Trying to learn the math behind AI.  PhD from DKFZ Heidelberg, physicist before that.</p>
     <ul class="links">
       <!-- fill in real URLs -->
       <li><a href="#">GitHub</a></li>
@@ -156,28 +155,6 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
   </div>
 </section>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="content">
-    <article class="entry">
-      <h3>Webcam YOLO latency benchmark</h3>
-      <p class="meta">PyTorch, TensorRT, OpenVINO</p>
-      <p>One YOLO11 model on live webcam input, timed end to end. GPU against CPU, framework against framework, to see where the milliseconds actually go.</p>
-      <div class="actions"><a href="#">Repo</a></div>
-    </article>
-    <article class="entry">
-      <h3>Small-object detection on VisDrone</h3>
-      <p class="meta">YOLO, SAHI, ONNX, OpenVINO INT8</p>
-      <p>Drone footage where most targets are a handful of pixels. Sliced inference for recall, quantized export for running it on edge hardware.</p>
-      <div class="actions"><a href="#">Repo</a></div>
-    </article>
-    <article class="entry">
-      <h3>Rust inference pipeline</h3>
-      <p class="meta">In progress</p>
-      <p>Porting the webcam pipeline to Rust to find out how much latency Python was hiding.</p>
-    </article>
-  </div>
-</section>
 
 <section id="cv">
   <h2>CV</h2>
@@ -191,7 +168,7 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
       <dt>YYYY–YYYY</dt>
       <dd>MSc Physics<span>University</span></dd>
     </dl>
-    <p class="skills"><strong>Tools I use daily:</strong> PyTorch, MONAI, DICOM and OCT data, vision transformers, TensorRT, OpenVINO. Learning Rust.</p>
+    <p class="skills"><strong>Tools I use daily:</strong> PyTorch, nvim, vision transformers, UNets. Learning Rust.</p>
   </div>
 </section>
 
@@ -233,7 +210,7 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
   </div>
 </section>
 
-<footer>Written by hand, hosted on GitHub Pages.</footer>
+<footer>Written by hand, visuals and structure by Claude, hosted on GitHub Pages.</footer>
 </div>
 
 <script>
