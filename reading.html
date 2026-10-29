@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading | Nico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<!-- KaTeX lines only on pages with math -->
+</head>
+<body>
+
+<section id="reading">
+  <h2>Must Read for Flow Matching and Diffusion</h2>
+  <div class="content">
+    <p>Papers and books I’d hand to a colleague, each with a note on why.</p>
+
+    <h4>Generative modeling</h4>
+    <ul class="reading">
+      <li>
+        <a href="https://arxiv.org/abs/2210.02747">Flow Matching for Generative Modeling</a>
+        <span class="who">Lipman et al., ICLR 2023</span><br>
+        Regress a vector field onto simple conditional paths. Training ends up as boring as supervised learning, which is the point. With straight paths the whole loss fits on one line:
+        $$\mathcal{L}(\theta) = \mathbb{E}_{t,\,x_0,\,x_1}\big\| v_\theta(x_t, t) - (x_1 - x_0) \big\|^2, \quad x_t = (1-t)\,x_0 + t\,x_1$$
+      </li>
+      <li>
+        <a href="https://arxiv.org/abs/2209.03003">Flow Straight and Fast: Rectified Flow</a>
+        <span class="who">Liu, Gong, Liu, ICLR 2023</span><br>
+        Same idea from another angle, plus reflow to straighten paths for few-step sampling.
+      </li>
+      <li>
+        <a href="https://arxiv.org/abs/2209.15571">Building Normalizing Flows with Stochastic Interpolants</a>
+        <span class="who">Albergo, Vanden-Eijnden, ICLR 2023</span><br>
+        The general frame the two above fit into.
+      </li>
+      <li>
+        <a href="https://arxiv.org/abs/2011.13456">Score-Based Generative Modeling through SDEs</a>
+        <span class="who">Song et al., ICLR 2021</span><br>
+        Diffusion as an SDE, with the probability flow ODE on the side. Read this first if diffusion still feels like magic.
+      </li>
+      <li>
+        <a href="https://arxiv.org/abs/1806.07366">Neural Ordinary Differential Equations</a>
+        <span class="who">Chen et al., NeurIPS 2018</span><br>
+        Where continuous-time deep learning starts.
+      </li>
+    </ul>
+
+  </div>
+</section>
+</body>
+</html>

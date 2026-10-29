@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nico | Generative models and medical imaging</title>
-<meta name="description" content="Nico, ML researcher. Flow matching, diffusion models, longitudinal 4D medical imaging,  programming.">
+<meta name="description" content="Nico, ML researcher in Heidelberg. Flow matching, diffusion models, longitudinal 4D medical imaging, edge inference.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
@@ -12,123 +12,52 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
-<style>
-:root{
-  --bg:#F2F4F3; --ink:#18212B; --muted:#5E6B73; --rule:#D3DAD9;
-  --accent:#1D6E73; --noise:#9AA5AB;
-  color-scheme:light;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#10161C; --ink:#E2E7E9; --muted:#93A0A7; --rule:#26313A;
-    --accent:#62B6BB; --noise:#4E5A63;
-    color-scheme:dark;
-  }
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font-family:"Newsreader",Georgia,"Times New Roman",serif;
-  font-optical-sizing:auto; font-size:1.1875rem; line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit; text-decoration:underline; text-decoration-color:var(--accent);
-  text-decoration-thickness:1px; text-underline-offset:.2em}
-a:hover{color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
-.wrap{max-width:64rem; margin:0 auto; padding:0 1.5rem}
-
-/* nav */
-nav{display:flex; justify-content:space-between; align-items:baseline;
-  padding:1.5rem 0; font-size:1rem}
-nav .home{font-weight:500; text-decoration:none}
-nav ul{display:flex; gap:1.4rem; list-style:none; margin:0; padding:0}
-nav ul a{text-decoration:none; color:var(--muted)}
-nav ul a:hover{color:var(--accent)}
-
-/* hero */
-.hero{display:grid; gap:2.5rem; padding:3rem 0 4.5rem; align-items:center}
-@media (min-width:56rem){.hero{grid-template-columns:1.1fr 1fr; padding:5rem 0 6rem}}
-h1{font-weight:300; font-size:clamp(4rem,11vw,7.5rem); line-height:.95;
-  letter-spacing:-.025em; margin:0 0 1.75rem}
-.lede{font-size:1.45rem; line-height:1.45; max-width:30ch; margin:0 0 1.25rem}
-.sub{color:var(--muted); max-width:38ch; margin:0 0 2rem}
-.links{display:flex; flex-wrap:wrap; gap:1.5rem; list-style:none; padding:0; margin:0}
-figure{margin:0}
-#flow{display:block; width:100%; aspect-ratio:1/1}
-figcaption{color:var(--muted); font-size:.95rem; font-style:italic; margin-top:.5rem;
-  display:flex; justify-content:space-between; gap:1rem}
-#tval{font-variant-numeric:tabular-nums; white-space:nowrap}
-
-/* sections */
-section{border-top:1px solid var(--rule); padding:4rem 0; display:grid; gap:1rem 3rem}
-@media (min-width:56rem){section{grid-template-columns:13rem 1fr}}
-h2{font-weight:400; font-size:2rem; line-height:1.2; margin:0; letter-spacing:-.01em}
-.content{max-width:40rem}
-.content > p:first-child{margin-top:0}
-h3{font-weight:500; font-size:1.25rem; line-height:1.35; margin:0}
-.entry{margin:0 0 2.25rem}
-.entry:last-child{margin-bottom:0}
-.meta{color:var(--muted); font-style:italic; margin:.15rem 0 .5rem}
-.entry p{margin:.4rem 0}
-.entry .actions{display:flex; gap:1.25rem; font-size:1rem}
-.minor{list-style:none; padding:0; margin:0}
-.minor li{margin:0 0 .6rem}
-.minor .meta{display:block; margin:0}
-h4{font-weight:500; font-size:1.1rem; margin:3rem 0 1.25rem; color:var(--muted)}
-h4:first-of-type{margin-top:0}
-
-/* timeline */
-.timeline{display:grid; grid-template-columns:7.5rem 1fr; gap:1.1rem 1.5rem; margin:0}
-.timeline dt{color:var(--muted); font-variant-numeric:tabular-nums}
-.timeline dd{margin:0}
-.timeline dd span{display:block; color:var(--muted); font-style:italic}
-.skills{margin-top:2.5rem; color:var(--muted)}
-.skills strong{color:var(--ink); font-weight:500}
-
-/* reading */
-.reading{list-style:none; padding:0; margin:0}
-.reading li{margin:0 0 1.6rem}
-.reading .who{color:var(--muted)}
-.path{list-style:none; padding:0; margin:0; counter-reset:step}
-.path li{counter-increment:step; position:relative; padding-left:2.5rem; margin:0 0 1.6rem}
-.path li::before{content:counter(step); position:absolute; left:0; top:-.05rem;
-  font-size:1.5rem; font-weight:300; color:var(--accent); line-height:1.4}
-.katex-display{overflow-x:auto; overflow-y:hidden; padding:.25rem 0}
-
-footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted); font-size:.95rem}
-</style>
-</head>
+    <link rel="stylesheet" href="style.css">
+  </head>
 <body>
 <div class="wrap">
 
 <nav>
+        <!--
+
   <a class="home" href="#">Nico</a>
-  <ul>
+-->
+        <ul>
     <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
-    <li><a href="#reading">Reading</a></li>
+    <li><a href="reading.html">Reading</a></li>
   </ul>
 </nav>
 
 <header class="hero">
-  <div>
-    <h1>Nico Disch<!-- add surname --></h1>
-    <p class="lede">I build generative models for medical images that change over time.</p>
-    <p class="sub">Flow matching, diffusion, and 4D image series. Lately also making vision models run fast on small hardware. Trying to learn the math behind AI.  PhD from DKFZ Heidelberg, physicist before that.</p>
-    <ul class="links">
-      <!-- fill in real URLs -->
-      <li><a href="#">GitHub</a></li>
-      <li><a href="#">Google Scholar</a></li>
-      <li><a href="#">LinkedIn</a></li>
-    </ul>
+  <div class="intro">
+    <div class="name">
+      <img class="portrait" src="img/profile_foto.png" alt="Portrait of Nico" width="220" height="220"> 
+            <h1>Nico<br> Disch<!-- add surname --></h1>
+    </div>
+    <div>
+      <p class="lede">I build AI models, and other stuff.</p>
+      <p class="sub">Flow matching, diffusion, and 4D image series. Lately also making vision models run fast on small hardware. Computer Science PhD from DKFZ Heidelberg, physics and math before that.</p>
+      <ul class="links">
+        <!-- fill in real URLs -->
+        <li><a href="https://github.com/NicoDisch">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
   </div>
-  <figure>
-    <canvas id="flow" aria-label="Animation: particles flow from Gaussian noise to a two-moons distribution along straight paths, then back."></canvas>
-    <figcaption><span>Noise to data along straight paths, and back.</span><span id="tval">t = 0.00</span></figcaption>
-  </figure>
+  <div class="panels">
+    <figure>
+      <h3>Flow matching</h3>
+      <canvas id="fm" aria-label="Particles flow from Gaussian noise to a two-moons distribution along straight paths."></canvas>
+      <figcaption><span>Noise to data along straight paths.</span><span class="t" id="fm-t">s = 0.00</span></figcaption>
+    </figure>
+    <figure>
+      <h3>CRONOS</h3>
+      <canvas id="cr" aria-label="A timeline of scans at irregular times. Each scan flows along straight paths into a forecast at a new time point, all landing on the same prediction."></canvas>
+      <figcaption><span>Every earlier scan flows to τ*, each across its own time gap.</span><span class="t" id="cr-t">s = 0.00</span></figcaption>
+    </figure>
+  </div>
 </header>
 
 <section id="research">
@@ -145,7 +74,7 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
       </div>
     </article>
 
-    <h4>Workshop papers</h4>
+    <h4>Workshop papers (WIP)</h4>
     <ul class="minor">
       <!-- replace titles and links -->
       <li><a href="#">Workshop paper title</a><span class="meta">NeurIPS workshop</span></li>
@@ -161,66 +90,39 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
   <div class="content">
     <!-- replace YYYY, reorder if needed, add BSc -->
     <dl class="timeline">
-      <dt>YYYY–YYYY</dt>
-      <dd>PhD, medical imaging and machine learning<span>German Cancer Research Center (DKFZ), Heidelberg</span></dd>
-      <dt>YYYY–YYYY</dt>
+      <dt>2026</dt>
+      <dd>Post Doc, medical imaging and machine learning, applications of foundation models<span>German Cancer Research Center (DKFZ), Heidelberg</span></dd>
+      <dt>2022–2026</dt>
+      <dd>PhD, medical imaging and machine learning, image time series<span>German Cancer Research Center (DKFZ), Heidelberg</span></dd>
+      <dt>2020–2021</dt>
       <dd>Data Scientist<span>Lidl Analytics</span></dd>
-      <dt>YYYY–YYYY</dt>
-      <dd>MSc Physics<span>University</span></dd>
+      <dt>2019–2021</dt>
+      <dd>MSc Physics<span>Heidelberg University</span></dd>
+    <!-- replace YYYY, 
+
+      <dt>2015–2019</dt>
+      <dd>BSc Physics<span>Heidelberg University</span></dd>
+reorder if needed, add BSc -->
     </dl>
-    <p class="skills"><strong>Tools I use daily:</strong> PyTorch, nvim, vision transformers, UNets. Learning Rust.</p>
+
+    <p class="skills"><strong>Tools I use daily:</strong> Python, PyTorch, medical image data (MRI, CT and variants) on HPC, vision transformers and UNets, Flow Matching and Diffusion, vim and vimium.</p>
+    <p class="skills"><strong>Familiar tools and topics I am improving:</strong> Rust, ROS2, YOLO, edge inference. </p>
   </div>
 </section>
 
-<section id="reading">
-  <h2>Reading</h2>
-  <div class="content">
-    <p>Papers and books I’d hand to a colleague, each with a note on why.</p>
 
-    <h4>Generative modeling</h4>
-    <ul class="reading">
-      <li>
-        <a href="https://arxiv.org/abs/2210.02747">Flow Matching for Generative Modeling</a>
-        <span class="who">Lipman et al., ICLR 2023</span><br>
-        Regress a vector field onto simple conditional paths. Training ends up as boring as supervised learning, which is the point. With straight paths the whole loss fits on one line:
-        $$\mathcal{L}(\theta) = \mathbb{E}_{t,\,x_0,\,x_1}\big\| v_\theta(x_t, t) - (x_1 - x_0) \big\|^2, \quad x_t = (1-t)\,x_0 + t\,x_1$$
-      </li>
-      <li>
-        <a href="https://arxiv.org/abs/2209.03003">Flow Straight and Fast: Rectified Flow</a>
-        <span class="who">Liu, Gong, Liu, ICLR 2023</span><br>
-        Same idea from another angle, plus reflow to straighten paths for few-step sampling.
-      </li>
-      <li>
-        <a href="https://arxiv.org/abs/2209.15571">Building Normalizing Flows with Stochastic Interpolants</a>
-        <span class="who">Albergo, Vanden-Eijnden, ICLR 2023</span><br>
-        The general frame the two above fit into.
-      </li>
-      <li>
-        <a href="https://arxiv.org/abs/2011.13456">Score-Based Generative Modeling through SDEs</a>
-        <span class="who">Song et al., ICLR 2021</span><br>
-        Diffusion as an SDE, with the probability flow ODE on the side. Read this first if diffusion still feels like magic.
-      </li>
-      <li>
-        <a href="https://arxiv.org/abs/1806.07366">Neural Ordinary Differential Equations</a>
-        <span class="who">Chen et al., NeurIPS 2018</span><br>
-        Where continuous-time deep learning starts.
-      </li>
-    </ul>
-
-  </div>
-</section>
-
-<footer>Written by hand, visuals and structure by Claude, hosted on GitHub Pages.</footer>
+<footer>Written by hand, designed with Claude,  hosted on GitHub Pages. Work In Progress. </footer>
 </div>
 
 <script>
 (() => {
-  const cv = document.getElementById('flow');
-  const ctx = cv.getContext('2d');
-  const tval = document.getElementById('tval');
-  const N = 900, R = 2.4;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let colors, W, H, dpr;
+  const N = 900;
+  const CTX = [0.0, 0.2, 0.47, 0.62];        // irregular scan times
+  const TLAST = CTX[CTX.length - 1];
+  const TARGETS = [0.85, 1.05, 1.25];        // forecast times, cycled
+  const TMAX = 1.35;
+  let col, cycle = 0, raf = null, start = null;
 
   const gauss = () => {
     let u = 0, v = 0;
@@ -228,79 +130,189 @@ footer{border-top:1px solid var(--rule); padding:2rem 0 3rem; color:var(--muted)
     while (!v) v = Math.random();
     return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
   };
-
-  const x0 = [], x1 = [];
-  for (let i = 0; i < N; i++) {
-    x0.push([gauss() * 0.75, gauss() * 0.75]);
+  const noise = () => Array.from({ length: N }, () => [gauss() * 0.7, gauss() * 0.7]);
+  let x0 = noise();
+  const moons = Array.from({ length: N }, (_, i) => {
     const a = Math.PI * Math.random();
-    let x, y;
-    if (i % 2) { x = Math.cos(a); y = Math.sin(a); }
-    else { x = 1 - Math.cos(a); y = 0.5 - Math.sin(a); }
-    x1.push([(x - 0.5) * 1.5 + gauss() * 0.06, -(y - 0.25) * 1.5 + gauss() * 0.06]);
-  }
+    const x = i % 2 ? Math.cos(a) : 1 - Math.cos(a);
+    const y = i % 2 ? Math.sin(a) : 0.5 - Math.sin(a);
+    return [(x - 0.5) * 1.5 + gauss() * 0.06, -(y - 0.25) * 1.5 + gauss() * 0.06];
+  });
+
+  // blob with a bulge that grows over patient time tau
+  const base = Array.from({ length: N }, () => [(Math.random() * 2 - 1) * Math.PI, Math.sqrt(Math.random())]);
+  const shape = (i, tau) => {
+    const [th, r] = base[i];
+    const d = th - 0.4;
+    const R = 1 + (0.05 + 1.0 * tau) * Math.exp(-(d * d) / 0.32);
+    return [-0.3 + r * R * Math.cos(th) * (1 - 0.18 * tau), r * R * Math.sin(th) * 0.82];
+  };
 
   const hex = h => [1, 3, 5].map(i => parseInt(h.trim().slice(i, i + 2), 16));
   const readColors = () => {
-    const s = getComputedStyle(document.documentElement);
-    colors = { noise: hex(s.getPropertyValue('--noise')), accent: hex(s.getPropertyValue('--accent')) };
+    const st = getComputedStyle(document.documentElement);
+    col = {};
+    for (const k of ['noise', 'accent', 'muted']) col[k] = hex(st.getPropertyValue('--' + k));
   };
-
-  const resize = () => {
-    dpr = window.devicePixelRatio || 1;
-    W = cv.width = Math.round(cv.clientWidth * dpr);
-    H = cv.height = Math.round(cv.clientHeight * dpr);
-  };
-
+  const mix = (a, b, t) => a.map((c, k) => Math.round(c + (b[k] - c) * t));
+  const rgba = (c, a = 1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  const lerp = (a, b, t) => [(1 - t) * a[0] + t * b[0], (1 - t) * a[1] + t * b[1]];
   const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-  const px = p => [W / 2 + p[0] / R * W / 2, H / 2 - p[1] / R * H / 2];
 
-  const draw = t => {
-    ctx.clearRect(0, 0, W, H);
-    const [r, g, b] = colors.noise.map((c, k) => Math.round(c + (colors.accent[k] - c) * t));
-    const [ar, ag, ab] = colors.accent;
-    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.10)`;
-    ctx.lineWidth = dpr;
-    ctx.beginPath();
-    for (let i = 0; i < N; i += 7) {
-      const a = px(x0[i]), c = px(x1[i]);
-      ctx.moveTo(a[0], a[1]); ctx.lineTo(c[0], c[1]);
+  const panel = id => {
+    const cv = document.getElementById(id);
+    return { cv, ctx: cv.getContext('2d'), out: document.getElementById(id + '-t'), W: 0, H: 0, dpr: 1 };
+  };
+  const fm = panel('fm'), cr = panel('cr');
+  const resize = () => {
+    for (const P of [fm, cr]) {
+      P.dpr = window.devicePixelRatio || 1;
+      P.W = P.cv.width = Math.round(P.cv.clientWidth * P.dpr);
+      P.H = P.cv.height = Math.round(P.cv.clientHeight * P.dpr);
     }
-    ctx.stroke();
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
-    const rad = 1.7 * dpr;
+  };
+
+  const dots = (P, map, get, color, alpha, r = 1.6) => {
+    if (alpha <= 0) return;
+    const c = P.ctx;
+    c.fillStyle = rgba(color, alpha);
+    const rad = r * P.dpr;
     for (let i = 0; i < N; i++) {
-      const p = px([(1 - t) * x0[i][0] + t * x1[i][0], (1 - t) * x0[i][1] + t * x1[i][1]]);
-      ctx.beginPath(); ctx.arc(p[0], p[1], rad, 0, 2 * Math.PI); ctx.fill();
+      const p = map(get(i));
+      c.beginPath(); c.arc(p[0], p[1], rad, 0, 2 * Math.PI); c.fill();
     }
-    tval.textContent = `t = ${t.toFixed(2)}`;
+  };
+  const paths = (P, map, a, b) => {
+    const c = P.ctx;
+    c.strokeStyle = rgba(col.accent, 0.1);
+    c.lineWidth = P.dpr;
+    c.beginPath();
+    for (let i = 0; i < N; i += 7) {
+      const p = map(a(i)), q = map(b(i));
+      c.moveTo(p[0], p[1]); c.lineTo(q[0], q[1]);
+    }
+    c.stroke();
   };
 
-  // hold 1.2s, forward 3.8s, hold 1.2s, back 3.8s
-  const cycle = 10000;
-  const tAt = ms => {
-    const m = ms % cycle;
-    if (m < 1200) return 0;
-    if (m < 5000) return ease((m - 1200) / 3800);
-    if (m < 6200) return 1;
-    return 1 - ease((m - 6200) / 3800);
+  const drawFM = s => {
+    const { ctx: c, W, H } = fm;
+    c.clearRect(0, 0, W, H);
+    const k = 0.45 * H / 2.1;
+    const map = p => [W / 2 + p[0] * k, H / 2 - p[1] * k];
+    paths(fm, map, i => x0[i], i => moons[i]);
+    dots(fm, map, i => lerp(x0[i], moons[i], s), mix(col.noise, col.accent, s), 1);
+    fm.out.textContent = `s = ${s.toFixed(2)}`;
   };
 
-  let start = null, raf = null;
+  const drawCR = (s, tauStar) => {
+    const { ctx: c, W, H, dpr } = cr;
+    c.clearRect(0, 0, W, H);
+    const T = CTX.length;
+    const alphaOf = j => 0.35 + 0.55 * j / (T - 1);   // older scans lighter
+    const colOf = j => mix(col.muted, col.accent, s);
+
+    // timeline strip
+    const ay = H * 0.2, cy = H * 0.09;
+    const xOf = t => W * 0.06 + t / TMAX * W * 0.86;
+    const m = H * 0.045, sz = 1.2 * dpr;
+    c.strokeStyle = rgba(col.muted, 0.6); c.lineWidth = dpr;
+    c.beginPath();
+    c.moveTo(xOf(0) - 8 * dpr, ay); c.lineTo(W * 0.95, ay);
+    for (const t of CTX) { c.moveTo(xOf(t), ay - 4 * dpr); c.lineTo(xOf(t), ay + 4 * dpr); }
+    c.stroke();
+    const mini = (t, color, a) => {
+      c.fillStyle = rgba(color, a);
+      for (let i = 0; i < N; i += 3) {
+        const p = shape(i, t);
+        c.fillRect(xOf(t) + p[0] * m, cy - p[1] * m, sz, sz);
+      }
+    };
+    CTX.forEach((t, j) => mini(t, col.muted, alphaOf(j)));
+    const tx = xOf(tauStar);
+
+    // one arc per context scan, depth grows with the gap, a dot travels with s
+    CTX.forEach((t, j) => {
+      const x1 = xOf(t), d = H * (0.05 + 0.1 * (tauStar - t) / TMAX);
+      const cx = (x1 + tx) / 2, cyc = ay + d;
+      c.strokeStyle = rgba(colOf(j), 0.25 + 0.5 * alphaOf(j));
+      c.lineWidth = dpr;
+      c.beginPath(); c.moveTo(x1, ay); c.quadraticCurveTo(cx, cyc, tx, ay); c.stroke();
+      if (s > 0 && s < 1) {
+        const u = 1 - s;
+        const px = u * u * x1 + 2 * u * s * cx + s * s * tx;
+        const py = u * u * ay + 2 * u * s * cyc + s * s * ay;
+        c.fillStyle = rgba(colOf(j), alphaOf(j));
+        c.beginPath(); c.arc(px, py, 2.5 * dpr, 0, 2 * Math.PI); c.fill();
+      }
+    });
+
+    c.strokeStyle = rgba(col.accent, 1);
+    c.beginPath(); c.moveTo(tx, ay - 6 * dpr); c.lineTo(tx, ay + 6 * dpr); c.stroke();
+    if (s < 1) {
+      c.setLineDash([3 * dpr, 3 * dpr]);
+      c.strokeStyle = rgba(col.accent, 0.6 * (1 - s));
+      c.beginPath(); c.arc(tx, cy, H * 0.06, 0, 2 * Math.PI); c.stroke();
+      c.setLineDash([]);
+    }
+    mini(tauStar, col.accent, s);
+    c.font = `italic ${14 * dpr}px Newsreader, Georgia, serif`;
+    c.fillStyle = rgba(col.muted, 1);
+    c.textAlign = 'left'; c.fillText('τ*', tx + 6 * dpr, ay + 16 * dpr);
+    c.textAlign = 'right'; c.fillText('τ', W * 0.95, ay + 16 * dpr);
+
+    // main view: every scan flows to the forecast
+    const k = 0.29 * H / 1.4;
+    const map = p => [W / 2 + (p[0] + 0.1) * k, H * 0.69 - p[1] * k];
+    const tgt = i => shape(i, tauStar);
+    const rad = 1.4 * dpr;
+    CTX.forEach((t, j) => {
+      c.strokeStyle = rgba(colOf(j), 0.07 + 0.06 * j / (T - 1));
+      c.lineWidth = dpr;
+      c.beginPath();
+      for (let i = j; i < N; i += 16) {
+        const p = map(shape(i, t)), q = map(tgt(i));
+        c.moveTo(p[0], p[1]); c.lineTo(q[0], q[1]);
+      }
+      c.stroke();
+      c.fillStyle = rgba(colOf(j), alphaOf(j) * (0.45 + 0.55 * s));
+      for (let i = j % 2; i < N; i += 2) {
+        const p = map(lerp(shape(i, t), tgt(i), s));
+        c.beginPath(); c.arc(p[0], p[1], rad, 0, 2 * Math.PI); c.fill();
+      }
+    });
+    cr.out.textContent = `τ* = ${tauStar.toFixed(2)}, s = ${s.toFixed(2)}`;
+  };
+
+  // hold, flow, hold, fade
+  const SEG = [1000, 3500, 1800, 700];
+  const TOTAL = SEG.reduce((a, b) => a + b);
+  const frame = (ms) => {
+    let i = 0; while (ms >= SEG[i]) ms -= SEG[i++];
+    const k = ms / SEG[i];
+    const s = i === 0 ? 0 : i === 1 ? ease(k) : 1;
+    const alpha = i === 3 ? 1 - k : 1;
+    const tauStar = TARGETS[cycle % TARGETS.length];
+    fm.ctx.globalAlpha = cr.ctx.globalAlpha = alpha;
+    drawFM(s); drawCR(s, tauStar);
+    fm.ctx.globalAlpha = cr.ctx.globalAlpha = 1;
+  };
+
   const loop = now => {
     if (start === null) start = now;
-    draw(tAt(now - start));
+    const el = now - start, c = Math.floor(el / TOTAL);
+    if (c !== cycle) { cycle = c; x0 = noise(); }
+    frame(el % TOTAL);
     raf = requestAnimationFrame(loop);
   };
-
+  const still = () => { cycle = 1; frame(SEG[0] + SEG[1]); };
   const run = () => {
-    cancelAnimationFrame(raf);
+    cancelAnimationFrame(raf); start = null; cycle = 0;
     readColors(); resize();
-    if (reduce.matches) draw(1);
-    else raf = requestAnimationFrame(loop);
+    if (reduce.matches) still(); else raf = requestAnimationFrame(loop);
   };
 
-  window.addEventListener('resize', () => { resize(); if (reduce.matches) draw(1); });
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); if (reduce.matches) draw(1); });
+  window.addEventListener('resize', () => { resize(); if (reduce.matches) still(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); if (reduce.matches) still(); });
   reduce.addEventListener('change', run);
   run();
 })();
